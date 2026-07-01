@@ -9,11 +9,13 @@
   <style>
     :root {
       --green: #76B900;
-      --purple: #7E3FF2;
+      --purple: #5D1682;
+      --gold: #D6B545;
+      --silver: #C8C8D4;
       --green-dim: rgba(118,185,0,0.18);
-      --purple-dim: rgba(126,63,242,0.18);
+      --purple-dim: rgba(93,22,130,0.18);
       --green-border: rgba(118,185,0,0.45);
-      --purple-border: rgba(126,63,242,0.45);
+      --purple-border: rgba(93,22,130,0.5);
       --bg: #090909;
       --card: #121212;
       --white: #FFFFFF;
@@ -34,12 +36,15 @@
       padding: 20px 14px 40px;
     }
 
+    .ic-gold   { color: var(--gold); }
+    .ic-silver { color: var(--silver); }
+
     /* ── Header ── */
     .header {
       width: 100%;
       max-width: 430px;
       text-align: center;
-      margin-bottom: 18px;
+      margin-bottom: 14px;
     }
 
     .eyebrow {
@@ -52,25 +57,35 @@
       margin-bottom: 6px;
     }
 
-    .title {
+    .title-the {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 58px;
-      font-weight: 800;
-      letter-spacing: 0.03em;
-      color: var(--green);
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      color: var(--silver);
       text-transform: uppercase;
-      line-height: 0.9;
-      margin-bottom: 8px;
+      line-height: 1;
+      display: block;
     }
 
-    .title span {
-      color: var(--white);
+    .title-lineup {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 76px;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      line-height: 0.88;
+      display: block;
+      background: linear-gradient(90deg, var(--green) 0%, #A8D800 55%, var(--green) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     .rule {
-      width: 40px;
+      width: 130px;
       height: 2px;
-      background: var(--green);
+      background: linear-gradient(90deg, transparent, var(--gold), var(--silver), var(--gold), transparent);
       margin: 10px auto;
     }
 
@@ -79,6 +94,7 @@
       color: var(--muted);
       font-weight: 400;
     }
+
 
     /* ── Progress ── */
     .progress {
@@ -115,10 +131,13 @@
       font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 5px;
     }
 
-    .prog-label.fest { color: var(--green); }
-    .prog-label.future { color: var(--purple); }
+    .prog-label.fest  { color: var(--green); }
+    .prog-label.future { color: #C580FF; }
 
     .prog-right {
       display: flex;
@@ -126,10 +145,7 @@
       gap: 6px;
     }
 
-    .dots {
-      display: flex;
-      gap: 4px;
-    }
+    .dots { display: flex; gap: 4px; }
 
     .dot {
       width: 9px;
@@ -139,29 +155,34 @@
       transition: background 0.2s;
     }
 
-    .dot.fest { border-color: var(--green); }
-    .dot.fest.filled { background: var(--green); }
-    .dot.future { border-color: var(--purple); }
-    .dot.future.filled { background: var(--purple); }
+    .dot.fest   { border-color: var(--green); }
+    .dot.fest.filled  { background: var(--green); }
+    .dot.future { border-color: #9B4DCA; }
+    .dot.future.filled { background: #9B4DCA; }
 
     .prog-check {
       font-size: 14px;
       opacity: 0;
       transition: opacity 0.3s;
+      color: var(--gold);
     }
-    .prog-check.fest { color: var(--green); }
-    .prog-check.future { color: var(--purple); }
     .prog-check.visible { opacity: 1; }
 
     /* ── Card ── */
     .card {
       width: 100%;
       max-width: 430px;
-      background: var(--card);
       border-radius: 16px;
       overflow: hidden;
-      border: 1px solid var(--divider);
       margin-bottom: 14px;
+      padding: 1.5px;
+      background: linear-gradient(135deg, var(--gold), var(--silver), var(--gold), var(--silver));
+    }
+
+    .card-inner {
+      background: var(--card);
+      border-radius: 14.5px;
+      overflow: hidden;
     }
 
     .zone-headers {
@@ -183,7 +204,7 @@
       gap: 5px;
     }
 
-    .zone-header.fest { background: var(--green); color: #000; }
+    .zone-header.fest   { background: var(--green); color: #000; }
     .zone-header.future { background: var(--purple); color: #fff; }
 
     .zone-icon { font-size: 13px; }
@@ -212,8 +233,8 @@
       color: rgba(255,255,255,0.65);
     }
 
-    .sq.fest { background: rgba(118,185,0,0.06); }
-    .sq.future { background: rgba(126,63,242,0.06); }
+    .sq.fest   { background: rgba(118,185,0,0.06); }
+    .sq.future { background: rgba(93,22,130,0.08); }
 
     .sq.marked.fest {
       background: rgba(118,185,0,0.22);
@@ -222,8 +243,8 @@
     }
 
     .sq.marked.future {
-      background: rgba(126,63,242,0.22);
-      border-color: rgba(126,63,242,0.4);
+      background: rgba(93,22,130,0.28);
+      border-color: rgba(147,63,242,0.4);
       color: #fff;
     }
 
@@ -235,10 +256,10 @@
       font-weight: 700;
       opacity: 0;
       transition: opacity 0.2s;
+      color: var(--gold);
     }
 
-    .sq.marked.fest .sq-check { color: var(--green); opacity: 1; }
-    .sq.marked.future .sq-check { color: var(--purple); opacity: 1; }
+    .sq.marked .sq-check { opacity: 1; }
 
     /* ── Submit ── */
     .submit-wrap {
@@ -270,9 +291,10 @@
     }
 
     .submit-btn.unlocked {
-      background: var(--green);
+      background: linear-gradient(90deg, #C4A030, var(--gold), #E8CC6A, var(--gold), #C4A030);
       color: #000;
       cursor: pointer;
+      box-shadow: 0 0 24px rgba(214,181,69,0.4);
     }
 
     .submit-btn.unlocked:active { transform: scale(0.98); }
@@ -296,6 +318,19 @@
       border-radius: 20px;
       cursor: pointer;
     }
+
+    /* ── Bottom accent ── */
+    .bottom-accent {
+      margin-top: 24px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      opacity: 0.4;
+      font-size: 13px;
+    }
+
+    .bottom-accent .ic-gold   { color: var(--gold); }
+    .bottom-accent .ic-silver { color: var(--silver); }
 
     /* ── Toast ── */
     .toast {
@@ -327,7 +362,8 @@
 
   <div class="header">
     <div class="eyebrow">Future Fest 2026 &nbsp;·&nbsp; Intern Cohort Competition</div>
-    <div class="title">The<br><span>Lineup</span></div>
+    <span class="title-the">The</span>
+    <span class="title-lineup">Lineup</span>
     <div class="rule"></div>
     <div class="tagline">Scan 2 FEST + 2 FUTURE to lock in your lineup</div>
   </div>
@@ -335,54 +371,60 @@
   <div class="progress" id="progress"></div>
 
   <div class="card">
-    <div class="zone-headers">
-      <div class="zone-header fest"><span class="zone-icon">♪</span> FEST Stage</div>
-      <div class="zone-header future"><span class="zone-icon">✦</span> Future Stage</div>
+    <div class="card-inner">
+      <div class="zone-headers">
+        <div class="zone-header fest"><span class="zone-icon">♪ ♫</span>&nbsp; FEST Stage</div>
+        <div class="zone-header future"><span class="zone-icon">✦ ◈</span>&nbsp; Future Stage</div>
+      </div>
+      <div class="grid" id="grid"></div>
     </div>
-    <div class="grid" id="grid"></div>
   </div>
 
   <div class="submit-wrap">
     <button class="submit-btn locked" id="submitBtn" onclick="handleSubmit()">
-      Lock In My Lineup
+      ✦ Lock In My Lineup ✦
     </button>
     <div class="submit-hint" id="submitHint">Scan at least 2 FEST + 2 FUTURE to unlock</div>
   </div>
 
   <button class="reset-btn" onclick="resetCard()">Reset card (testing only)</button>
 
+  <div class="bottom-accent">
+    <span class="ic-gold">♪</span>
+    <span class="ic-silver">· · ·</span>
+    <span class="ic-gold">✦</span>
+    <span class="ic-silver">· · ·</span>
+    <span class="ic-gold">♫</span>
+  </div>
+
   <div class="toast" id="toast"></div>
 
   <script>
-    // ── Config ──────────────────────────────────────────────
     const FORM_URL = 'https://forms.microsoft.com/PLACEHOLDER_REPLACE_WITH_REAL_URL';
     const STORAGE_KEY = 'lineup-2026';
 
-    // ── Squares (placeholder activities) ────────────────────
-    // Layout: [fest, fest, future, future] per row
     const squares = [
-      { id: 'fest-1',   zone: 'fest',   label: 'Grill or\npizza oven' },
-      { id: 'fest-2',   zone: 'fest',   label: 'FEST\nphotobooth' },
-      { id: 'future-1', zone: 'future', label: 'FUTURE\nbar' },
-      { id: 'future-2', zone: 'future', label: 'Find the\nrobot' },
+      { id: 'fest-1',   zone: 'fest',   icon: '♪', label: 'Grill or\npizza oven' },
+      { id: 'fest-2',   zone: 'fest',   icon: '♫', label: 'FEST\nphotobooth' },
+      { id: 'future-1', zone: 'future', icon: '◈', label: 'FUTURE\nbar' },
+      { id: 'future-2', zone: 'future', icon: '✦', label: 'Find the\nrobot' },
 
-      { id: 'fest-3',   zone: 'fest',   label: 'FEST\nbar' },
-      { id: 'fest-4',   zone: 'fest',   label: 'Claw\nmachine' },
-      { id: 'future-3', zone: 'future', label: 'FUTURE\nphotobooth' },
-      { id: 'future-4', zone: 'future', label: 'Demo\nstation' },
+      { id: 'fest-3',   zone: 'fest',   icon: '♬', label: 'FEST\nbar' },
+      { id: 'fest-4',   zone: 'fest',   icon: '♪', label: 'Claw\nmachine' },
+      { id: 'future-3', zone: 'future', icon: '⬡', label: 'FUTURE\nphotobooth' },
+      { id: 'future-4', zone: 'future', icon: '◈', label: 'Demo\nstation' },
 
-      { id: 'fest-5',   zone: 'fest',   label: 'Festival\nGlam' },
-      { id: 'fest-6',   zone: 'fest',   label: 'Live\nmusic' },
-      { id: 'future-5', zone: 'future', label: 'Mirror\nball / DJ' },
-      { id: 'future-6', zone: 'future', label: 'Main\nstage' },
+      { id: 'fest-5',   zone: 'fest',   icon: '♫', label: 'Festival\nGlam' },
+      { id: 'fest-6',   zone: 'fest',   icon: '♬', label: 'Live\nmusic' },
+      { id: 'future-5', zone: 'future', icon: '✦', label: 'Mirror\nball / DJ' },
+      { id: 'future-6', zone: 'future', icon: '⬡', label: 'Main\nstage' },
 
-      { id: 'fest-7',   zone: 'fest',   label: 'Food\ntrailer' },
-      { id: 'fest-8',   zone: 'fest',   label: 'Voyager\ncheck-in' },
-      { id: 'future-7', zone: 'future', label: 'Endeavor\ncheck-in' },
-      { id: 'future-8', zone: 'future', label: 'TBD' },
+      { id: 'fest-7',   zone: 'fest',   icon: '♪', label: 'Food\ntrailer' },
+      { id: 'fest-8',   zone: 'fest',   icon: '♫', label: 'Voyager\ncheck-in' },
+      { id: 'future-7', zone: 'future', icon: '◈', label: 'Endeavor\ncheck-in' },
+      { id: 'future-8', zone: 'future', icon: '✦', label: 'TBD' },
     ];
 
-    // ── State ────────────────────────────────────────────────
     function getMarked() {
       try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); }
       catch { return []; }
@@ -400,50 +442,41 @@
       return true;
     }
 
-    // ── Render ───────────────────────────────────────────────
     function render() {
       const marked = getMarked();
-      const festCount  = marked.filter(id => id.startsWith('fest')).length;
+      const festCount   = marked.filter(id => id.startsWith('fest')).length;
       const futureCount = marked.filter(id => id.startsWith('future')).length;
 
-      // Progress
       document.getElementById('progress').innerHTML = `
         <div class="prog-zone fest">
-          <span class="prog-label fest">FEST</span>
+          <span class="prog-label fest"><span>♪</span> FEST</span>
           <div class="prog-right">
             <div class="dots">
-              ${[0,1,2,3].map(i =>
-                `<div class="dot fest ${i < festCount ? 'filled' : ''}"></div>`
-              ).join('')}
+              ${[0,1,2,3].map(i => `<div class="dot fest ${i < festCount ? 'filled' : ''}"></div>`).join('')}
             </div>
-            <span class="prog-check fest ${festCount >= 2 ? 'visible' : ''}">✓</span>
+            <span class="prog-check ${festCount >= 2 ? 'visible' : ''}">✓</span>
           </div>
         </div>
         <div class="prog-zone future">
-          <span class="prog-label future">FUTURE</span>
+          <span class="prog-label future"><span>✦</span> FUTURE</span>
           <div class="prog-right">
             <div class="dots">
-              ${[0,1,2,3].map(i =>
-                `<div class="dot future ${i < futureCount ? 'filled' : ''}"></div>`
-              ).join('')}
+              ${[0,1,2,3].map(i => `<div class="dot future ${i < futureCount ? 'filled' : ''}"></div>`).join('')}
             </div>
-            <span class="prog-check future ${futureCount >= 2 ? 'visible' : ''}">✓</span>
+            <span class="prog-check ${futureCount >= 2 ? 'visible' : ''}">✓</span>
           </div>
         </div>
       `;
 
-      // Grid
       document.getElementById('grid').innerHTML = squares.map(sq => `
-        <div class="sq ${sq.zone} ${marked.includes(sq.id) ? 'marked' : ''}"
-             onclick="tapSquare('${sq.id}')">
+        <div class="sq ${sq.zone} ${marked.includes(sq.id) ? 'marked' : ''}" onclick="tapSquare('${sq.id}')">
           <span class="sq-check">✓</span>
           ${sq.label.replace('\n', '<br>')}
         </div>
       `).join('');
 
-      // Submit
       const unlocked = festCount >= 2 && futureCount >= 2;
-      const btn = document.getElementById('submitBtn');
+      const btn  = document.getElementById('submitBtn');
       const hint = document.getElementById('submitHint');
       btn.className = 'submit-btn ' + (unlocked ? 'unlocked' : 'locked');
       hint.textContent = unlocked
@@ -451,7 +484,6 @@
         : `Need: ${Math.max(0, 2 - festCount)} more FEST · ${Math.max(0, 2 - futureCount)} more FUTURE`;
     }
 
-    // ── Actions ──────────────────────────────────────────────
     function tapSquare(id) {
       const isNew = markSquare(id);
       showToast(isNew ? 'Added to your lineup!' : 'Already in your lineup');
@@ -460,11 +492,9 @@
 
     function handleSubmit() {
       const marked = getMarked();
-      const fest = marked.filter(id => id.startsWith('fest')).length;
+      const fest   = marked.filter(id => id.startsWith('fest')).length;
       const future = marked.filter(id => id.startsWith('future')).length;
-      if (fest >= 2 && future >= 2) {
-        window.location.href = FORM_URL;
-      }
+      if (fest >= 2 && future >= 2) window.location.href = FORM_URL;
     }
 
     function resetCard() {
@@ -480,9 +510,6 @@
       setTimeout(() => t.classList.remove('show'), 2200);
     }
 
-    // ── QR param handler ─────────────────────────────────────
-    // Each location QR links to: index.html?mark=fest-1 (etc.)
-    // This marks the square and cleans the URL
     (function handleQRParam() {
       const params = new URLSearchParams(window.location.search);
       const mark = params.get('mark');
