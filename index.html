@@ -4,8 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>The Lineup — Future Fest 2026</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    @font-face { font-family: 'NVIDIASans'; src: url('NVIDIASans_Lt.ttf'); font-weight: 300; font-style: normal; }
+    @font-face { font-family: 'NVIDIASans'; src: url('NVIDIASans_LtIt.ttf'); font-weight: 300; font-style: italic; }
+    @font-face { font-family: 'NVIDIASans'; src: url('NVIDIASans_Rg.ttf'); font-weight: 400; font-style: normal; }
+    @font-face { font-family: 'NVIDIASans'; src: url('NVIDIASans_It.ttf'); font-weight: 400; font-style: italic; }
+    @font-face { font-family: 'NVIDIASans'; src: url('NVIDIASans_Md.ttf'); font-weight: 500; font-style: normal; }
+    @font-face { font-family: 'NVIDIASans'; src: url('NVIDIASans_MdIt.ttf'); font-weight: 500; font-style: italic; }
+    @font-face { font-family: 'NVIDIASans'; src: url('NVIDIASans_Bd.ttf'); font-weight: 700; font-style: normal; }
+    @font-face { font-family: 'NVIDIASans'; src: url('NVIDIASans_BdIt.ttf'); font-weight: 700; font-style: italic; }
+  </style>
   <style>
     :root {
       --green: #76B900;
@@ -28,7 +36,7 @@
     body {
       background: var(--bg);
       color: var(--white);
-      font-family: 'Barlow', sans-serif;
+      font-family: 'NVIDIASans', sans-serif;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -48,7 +56,7 @@
     }
 
     .eyebrow {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'NVIDIASans', sans-serif;
       font-size: 11px;
       font-weight: 600;
       letter-spacing: 0.2em;
@@ -58,7 +66,7 @@
     }
 
     .title-the {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'NVIDIASans', sans-serif;
       font-size: 32px;
       font-weight: 700;
       letter-spacing: 0.22em;
@@ -69,7 +77,7 @@
     }
 
     .title-lineup {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'NVIDIASans', sans-serif;
       font-size: 76px;
       font-weight: 800;
       letter-spacing: 0.03em;
@@ -126,7 +134,7 @@
     }
 
     .prog-label {
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'NVIDIASans', sans-serif;
       font-size: 13px;
       font-weight: 700;
       letter-spacing: 0.12em;
@@ -193,7 +201,7 @@
     .zone-header {
       padding: 11px 8px;
       text-align: center;
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'NVIDIASans', sans-serif;
       font-size: 13px;
       font-weight: 700;
       letter-spacing: 0.15em;
@@ -272,7 +280,7 @@
       padding: 17px;
       border-radius: 12px;
       border: none;
-      font-family: 'Barlow Condensed', sans-serif;
+      font-family: 'NVIDIASans', sans-serif;
       font-size: 20px;
       font-weight: 700;
       letter-spacing: 0.1em;
@@ -312,7 +320,7 @@
       background: none;
       border: 1px solid rgba(255,255,255,0.12);
       color: rgba(255,255,255,0.25);
-      font-family: 'Barlow', sans-serif;
+      font-family: 'NVIDIASans', sans-serif;
       font-size: 11px;
       padding: 6px 18px;
       border-radius: 20px;
@@ -344,7 +352,7 @@
       border-radius: 30px;
       font-size: 13px;
       font-weight: 600;
-      font-family: 'Barlow', sans-serif;
+      font-family: 'NVIDIASans', sans-serif;
       opacity: 0;
       transition: opacity 0.25s, transform 0.25s;
       pointer-events: none;
